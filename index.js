@@ -21,8 +21,8 @@ axios(url)
     apartments.push({
       aptName
     })
-  })
 
-  console.log(apartments)
+    console.log(apartments)
+  })
 
 webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`))
