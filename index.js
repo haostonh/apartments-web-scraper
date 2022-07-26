@@ -12,7 +12,17 @@ const url = "https://www.apartments.com/davis-ca/"
 axios(url)
   .then(response => {
     const html = response.data
-    console.log(html)
+    const $ = cheerio.load(html)
+    const apartments = []
+
+    $('property-link', html).each(function() {
+      aptName = $(this).text()
+    })
+    apartments.push({
+      aptName
+    })
   })
+
+  console.log(apartments)
 
 webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`))
