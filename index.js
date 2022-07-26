@@ -19,9 +19,11 @@ axios(url)
       // needs a dash looking at page inspect
       // there were property-title classes in other sections, causing blank strings
       const aptName = $('.property-title', this).text()
+      const aptAddress = $('.property-address', this).text()
 
       apartments.push({
-        aptName
+        aptName,
+        aptAddress
       })
     })
 
