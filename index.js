@@ -15,8 +15,12 @@ function getURL() {
     name: 'city',
     validator: '/^[a-zA-Z]+(\x20([a-zA-Z]+))*$/',
     warning: 'City names greater than one word must be separated by a space'
+  },
+  {
+    name: 'state',
+    validator: '/^[A-Z]{2}$/',
+    warning: 'State must be abbreviated to 2 letters. Example: CA (California)'
   }]
-
 }
 
 function getApartmentInfo() {
