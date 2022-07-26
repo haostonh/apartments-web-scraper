@@ -4,5 +4,5 @@
 
 ## Goal
 - Take user input in which city and state they are searching for apartments
-- Scrap apartment name, address, phone number, pricing, beds, and link
-- Insert the apartment info into a CSV file
+- Scrap name, address, phone number, pricing, beds, and website of apartments
+- Insert the apartments' info into a CSV file
