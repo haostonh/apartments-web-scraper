@@ -21,6 +21,21 @@ function getURL() {
     validator: '/^[A-Z]{2}$/',
     warning: 'State must be abbreviated to 2 letters. Example: CA (California)'
   }]
+
+  let city = ""
+  let state = ""
+
+  prompt.get(properties, function (err, result) {
+    //
+    // Log the results.
+    //
+    console.log('Command-line input received:')
+    console.log('  username: ' + result.city)
+    console.log('  email: ' + result.state)
+
+    city = result.city
+    state = result.state
+  })
 }
 
 function getApartmentInfo() {
@@ -59,4 +74,5 @@ function getApartmentInfo() {
 
 webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`))
 
+getURL();
 getApartmentInfo();
