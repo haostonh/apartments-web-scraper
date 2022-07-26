@@ -8,33 +8,45 @@ const prompt = require("prompt")
 const webScraper = express()
 
 var url = "https://www.apartments.com/davis-ca/"
+var city = ""
+var state = ""
+
+function getCityState() {
+  return new Promise ((resolve, reject) => {
+    const properties = [
+    {
+      name: 'city',
+      validator: /^[a-zA-Z]+(\x20([a-zA-Z]+))*$/,
+      warning: 'City names greater than one word must be separated by a space'
+    },
+    {
+      name: 'state',
+      validator: /^[A-Z]{2}$/,
+      warning: 'State must be abbreviated to 2 letters. Example: CA (California)'
+    }]
+
+    prompt.get(properties, function (err, result) {
+      //
+      // Log the results.
+      //
+      console.log('Username: ' + result.city)
+      console.log('State: ' + result.state)
+
+      city = result.city
+      state = result.state
+    })
+
+    resolve()
+  })
+}
 
 async function getURL() {
-  const properties = [
-  {
-    name: 'city',
-    validator: /^[a-zA-Z]+(\x20([a-zA-Z]+))*$/,
-    warning: 'City names greater than one word must be separated by a space'
-  },
-  {
-    name: 'state',
-    validator: /^[A-Z]{2}$/,
-    warning: 'State must be abbreviated to 2 letters. Example: CA (California)'
-  }]
+  console.log("Going in CityState Function")
+  const result = await getCityState()
+  city = city.replace('/\x20/g','-')
+  console.log(city)
+  console.log("Hi")
 
-  let city = ""
-  let state = ""
-
-  prompt.get(properties, function (err, result) {
-    //
-    // Log the results.
-    //
-    console.log('Username: ' + result.city)
-    console.log('State: ' + result.state)
-
-    city = result.city
-    state = result.state
-  })
 }
 
 async function getApartmentInfo() {
