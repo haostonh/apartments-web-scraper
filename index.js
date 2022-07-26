@@ -6,7 +6,7 @@ const express = require("express")
 
 const webScraper = express()
 
-const url = "https://www.apartments.com/davis-ca/"
+const url = "https://www.apartments.com/dasdadasd/"
 
 // Sending a GET request for the info on website
 axios(url)
@@ -36,6 +36,8 @@ axios(url)
     })
 
     console.log(apartments)
-  })
+  }).catch(err => 
+    console.log("Error Status:", err.response.status)
+    )
 
 webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`))
