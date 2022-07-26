@@ -1,1 +1,8 @@
 # Apartments-Web-Scraper
+
+*Scraping Apartment Info from Apartments.com*
+
+## Goal
+- Take user input in which city and state they are searching for apartments
+- Scrap apartment name, address, phone number, pricing, beds, and link
+- Insert the apartment info into a CSV file
