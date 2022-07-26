@@ -23,14 +23,15 @@ axios(url)
       const aptPhoneNumber = $('.phone-link', this).find('span').text()
       const aptPricing = $('.property-pricing', this).text()
       const aptBeds = $('.property-beds', this).text()
-
+      const aptLink = $('.property-information', this).find('a').attr('href')
 
       apartments.push({
         aptName,
         aptAddress,
         aptPhoneNumber,
         aptPricing,
-        aptBeds
+        aptBeds,
+        aptLink
       })
     })
 
