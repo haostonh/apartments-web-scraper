@@ -15,7 +15,7 @@ axios(url)
     const $ = cheerio.load(html)
     const apartments = []
 
-    $('property-link', html).each(function() {
+    $('.property-link', html).each(function() {
       const aptName = $(this).text()
 
       apartments.push({
