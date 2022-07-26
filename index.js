@@ -15,9 +15,10 @@ axios(url)
     const $ = cheerio.load(html)
     const apartments = []
 
-    $('.property-title', html).each(function() {
+    $('.property-information', html).each(function() {
       // needs a dash looking at page inspect
-      const aptName = $(this).text()
+      // there were property-title classes in other sections, causing blank strings
+      const aptName = $('.property-title', this).text()
 
       apartments.push({
         aptName
