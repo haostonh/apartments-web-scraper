@@ -16,10 +16,11 @@ axios(url)
     const apartments = []
 
     $('property-link', html).each(function() {
-      aptName = $(this).text()
-    })
-    apartments.push({
-      aptName
+      const aptName = $(this).text()
+
+      apartments.push({
+        aptName
+      })
     })
 
     console.log(apartments)
