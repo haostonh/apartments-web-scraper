@@ -8,51 +8,42 @@ const prompt = require("prompt")
 const webScraper = express()
 
 var url = "https://www.apartments.com/davis-ca/"
-var city = ""
+
+// Temporarily disabled, will come back to later
+/*var city = ""
 var state = ""
 
 function getCityState() {
-  return new Promise ((resolve, reject) => {
-    const properties = [
-    {
-      name: 'city',
-      validator: /^[a-zA-Z]+(\x20([a-zA-Z]+))*$/,
-      warning: 'City names greater than one word must be separated by a space'
-    },
-    {
-      name: 'state',
-      validator: /^[A-Z]{2}$/,
-      warning: 'State must be abbreviated to 2 letters. Example: CA (California)'
-    }]
+  
+  const properties = [
+  {
+    name: 'city',
+    validator: /^[a-zA-Z]+(\x20([a-zA-Z]+))*$/,
+    warning: 'City names greater than one word must be separated by a space'
+  },
+  {
+    name: 'state',
+    validator: /^[A-Z]{2}$/,
+    warning: 'State must be abbreviated to 2 letters. Example: CA (California)'
+  }]
 
-    prompt.get(properties, function (err, result) {
-      //
-      // Log the results.
-      //
-      console.log('Username: ' + result.city)
-      console.log('State: ' + result.state)
-
-      city = result.city
-      state = result.state
-    })
-
-    resolve()
+  prompt.get(properties, function (err, result) {
+    city = result.city
+    state = result.state
   })
+    
 }
 
-async function getURL() {
-  console.log("Going in CityState Function")
-  const result = await getCityState()
-  city = city.replace('/\x20/g','-')
-  console.log(city)
-  console.log("Hi")
+function getURL() {
+  city = city.replace('/\x20/g','-').toLowerCase()
+  state = state.toLowerCase()
+  url = "https://www.apartments.com/" + city + "-" + state
+  console.log(url)
+} */
 
-}
-
-async function getApartmentInfo() {
-  await getURL();
-
+function getApartmentInfo() {
   webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`))
+
   // Sending a GET request for the info on website
   axios(url)
     .then(response => {
@@ -86,4 +77,4 @@ async function getApartmentInfo() {
       )
 }
 
-getURL();
+getApartmentInfo();
