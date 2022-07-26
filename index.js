@@ -3,10 +3,21 @@ const PORT = "8080"
 const axios = require("axios")
 const cheerio = require("cheerio")
 const express = require("express")
+const prompt = require("prompt")
 
 const webScraper = express()
 
-const url = "https://www.apartments.com/davis-ca/"
+var url = "https://www.apartments.com/davis-ca/"
+
+function getURL() {
+  const properties = [
+  {
+    name: 'city',
+    validator: '/^[a-zA-Z]+(\x20([a-zA-Z]+))*$/',
+    warning: 'City names greater than one word must be separated by a space'
+  }]
+
+}
 
 function getApartmentInfo() {
   // Sending a GET request for the info on website
