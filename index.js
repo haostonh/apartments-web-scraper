@@ -9,16 +9,16 @@ const webScraper = express()
 
 var url = "https://www.apartments.com/davis-ca/"
 
-function getURL() {
+async function getURL() {
   const properties = [
   {
     name: 'city',
-    validator: '/^[a-zA-Z]+(\x20([a-zA-Z]+))*$/',
+    validator: /^[a-zA-Z]+(\x20([a-zA-Z]+))*$/,
     warning: 'City names greater than one word must be separated by a space'
   },
   {
     name: 'state',
-    validator: '/^[A-Z]{2}$/',
+    validator: /^[A-Z]{2}$/,
     warning: 'State must be abbreviated to 2 letters. Example: CA (California)'
   }]
 
@@ -29,16 +29,18 @@ function getURL() {
     //
     // Log the results.
     //
-    console.log('Command-line input received:')
-    console.log('  username: ' + result.city)
-    console.log('  email: ' + result.state)
+    console.log('Username: ' + result.city)
+    console.log('State: ' + result.state)
 
     city = result.city
     state = result.state
   })
 }
 
-function getApartmentInfo() {
+async function getApartmentInfo() {
+  await getURL();
+
+  webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`))
   // Sending a GET request for the info on website
   axios(url)
     .then(response => {
@@ -72,7 +74,4 @@ function getApartmentInfo() {
       )
 }
 
-webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`))
-
 getURL();
-getApartmentInfo();
