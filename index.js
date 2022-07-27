@@ -11,31 +11,6 @@ var url = "https://www.apartments.com/davis-ca/"
 var city = ""
 var state = ""
 
-// Temporarily disabled, will come back to later
-/*var city = ""
-var state = ""
-
-function getCityState() {
-  
-  const properties = [
-  {
-    name: 'city',
-    validator: /^[a-zA-Z]+(\x20([a-zA-Z]+))*$/,
-    warning: 'City names greater than one word must be separated by a space'
-  },
-  {
-    name: 'state',
-    validator: /^[A-Z]{2}$/,
-    warning: 'State must be abbreviated to 2 letters. Example: CA (California)'
-  }]
-
-  prompt.get(properties, function (err, result) {
-    city = result.city
-    state = result.state
-  })
-    
-}*/
-
 function getCityState() {
   city = readlineSync.question('Enter City: ')
   state = readlineSync.question('Enter State: ')
