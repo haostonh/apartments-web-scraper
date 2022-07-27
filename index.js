@@ -12,8 +12,14 @@ var city
 var state
 
 function getCityState() {
-  city = readlineSync.question('Enter City: ')
-  state = readlineSync.question('Enter State: ')
+  city = readlineSync.question('Enter City: ', {
+    limit: /^[a-zA-Z]+(\x20([a-zA-Z]+))*$/, 
+    limitMessage: 'For Cities with 2+ Words, Enter a space in between'
+  })
+  state = readlineSync.question('Enter State: ', {
+    limit: /^[a-zA-Z]{2}$/,
+    limitMessage: '2 Letter State Abbreviations Only'
+  })
 }
 
 function getURL() {
