@@ -7,9 +7,9 @@ const readlineSync = require("readline-sync")
 
 const webScraper = express()
 
-var url = ""
-var city = ""
-var state = ""
+var url
+var city
+var state
 
 function getCityState() {
   city = readlineSync.question('Enter City: ')
