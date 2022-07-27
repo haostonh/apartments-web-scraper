@@ -7,7 +7,7 @@ const readlineSync = require("readline-sync")
 
 const webScraper = express()
 
-var url = "https://www.apartments.com/davis-ca/"
+var url = ""
 var city = ""
 var state = ""
 
