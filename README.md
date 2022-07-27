@@ -7,7 +7,6 @@
 - Scrap name, address, phone number, pricing, beds, and website of apartments
 - Insert the apartments' info into a CSV file
 
-
 ## Resources Used
  - [Web Scraping Tutorial](https://youtu.be/-3lqUHeZs_0)
  - [JQuery Documentation](https://api.jquery.com/)
