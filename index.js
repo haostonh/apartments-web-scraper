@@ -3,11 +3,13 @@ const PORT = "8080"
 const axios = require("axios")
 const cheerio = require("cheerio")
 const express = require("express")
-const prompt = require("prompt")
+const readlineSync = require("readline-sync")
 
 const webScraper = express()
 
 var url = "https://www.apartments.com/davis-ca/"
+var city = ""
+var state = ""
 
 // Temporarily disabled, will come back to later
 /*var city = ""
@@ -32,6 +34,11 @@ function getCityState() {
     state = result.state
   })
     
+}*/
+
+function getCityState() {
+  city = readlineSync.question('Enter City: ')
+  state = readlineSync.question('Enter State: ')
 }
 
 function getURL() {
@@ -39,9 +46,10 @@ function getURL() {
   state = state.toLowerCase()
   url = "https://www.apartments.com/" + city + "-" + state
   console.log(url)
-} */
+} 
 
 function getApartmentInfo() {
+  // Open the port to listen for url
   webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`))
 
   // Sending a GET request for the info on website
@@ -77,4 +85,6 @@ function getApartmentInfo() {
       )
 }
 
-getApartmentInfo();
+getCityState()
+getURL()
+getApartmentInfo()
