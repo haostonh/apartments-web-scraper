@@ -45,7 +45,6 @@ function getURL() {
   city = city.replace('/\x20/g','-').toLowerCase()
   state = state.toLowerCase()
   url = "https://www.apartments.com/" + city + "-" + state
-  console.log(url)
 } 
 
 function getApartmentInfo() {
