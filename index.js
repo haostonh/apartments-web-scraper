@@ -66,6 +66,11 @@ function getApartmentInfo(url) {
   return apartments
 }
 
+function putInfoIntoCSV(apartments) {
+
+}
+
 const cityStateInfo = getCityState()
 const url = getURL(cityStateInfo)
 const apartments = getApartmentInfo(url)
+putInfoIntoCSV()
