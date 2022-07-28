@@ -1,9 +1,9 @@
-const PORT = "8080";
+const PORT = '8080';
 
-const axios = require("axios");
-const cheerio = require("cheerio");
-const express = require("express");
-const readlineSync = require("readline-sync");
+const axios = require('axios');
+const cheerio = require('cheerio');
+const express = require('express');
+const readlineSync = require('readline-sync');
 
 const webScraper = express();
 
@@ -24,7 +24,7 @@ function getCityState() {
 function getURL(cityStateInfo) {
   const cityFormatted = cityStateInfo[0].replace('/\x20/g','-').toLowerCase();
   const stateFromatted = cityStateInfo[1].toLowerCase();
-  const url = "https://www.apartments.com/" + cityFormatted + "-" + stateFromatted;
+  const url = 'https://www.apartments.com/' + cityFormatted + "-" + stateFromatted;
 
   return url;
 } 
@@ -63,7 +63,7 @@ function getApartmentInfo(url) {
 
       console.log(apartments);
     }).catch(err => 
-      console.log("Error Status:", err.response.status)
+      console.log('Error Status:', err.response.status)
       );
 
   return apartments;
