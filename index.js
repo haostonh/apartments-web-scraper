@@ -26,7 +26,7 @@ function getURL(cityStateInfo) {
   return url;
 } 
 
-function getApartmentInfo() {
+function getApartmentInfo(url) {
   // Open the port to listen for url
   webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`))
 
