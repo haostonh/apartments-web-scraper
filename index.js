@@ -7,31 +7,30 @@ const readlineSync = require("readline-sync")
 
 const webScraper = express()
 
-var url
-var city
-var state
-const apartments = []
-
 function getCityState() {
-  city = readlineSync.question('Enter City: ', {
+  let city = readlineSync.question('Enter City: ', {
     limit: /^[a-zA-Z]+(\x20([a-zA-Z]+))*$/, 
     limitMessage: 'For Cities with 2+ Words, Enter a space in between'
   })
-  state = readlineSync.question('Enter State: ', {
+  let state = readlineSync.question('Enter State: ', {
     limit: /^[a-zA-Z]{2}$/,
     limitMessage: '2 Letter State Abbreviations Only'
   })
+  return [city, state];
 }
 
-function getURL() {
-  city = city.replace('/\x20/g','-').toLowerCase()
-  state = state.toLowerCase()
-  url = "https://www.apartments.com/" + city + "-" + state
+function getURL(cityStateInfo) {
+  let cityFormatted = cityStateInfo[0].replace('/\x20/g','-').toLowerCase()
+  let stateFromatted = cityStateInfo[1].toLowerCase()
+  let url = "https://www.apartments.com/" + cityFormatted + "-" + stateFromatted
+  return url;
 } 
 
 function getApartmentInfo() {
   // Open the port to listen for url
   webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`))
+
+  const apartments = []
 
   // Sending a GET request for the info on website
   axios(url)
@@ -63,8 +62,10 @@ function getApartmentInfo() {
     }).catch(err => 
       console.log("Error Status:", err.response.status)
       )
+
+  return apartments
 }
 
-getCityState()
-getURL()
-getApartmentInfo()
+const cityStateInfo = getCityState()
+const url = getURL(cityStateInfo)
+const apartments = getApartmentInfo(url)
