@@ -20,9 +20,9 @@ function getCityState() {
 }
 
 function getURL(cityStateInfo) {
-  let cityFormatted = cityStateInfo[0].replace('/\x20/g','-').toLowerCase()
-  let stateFromatted = cityStateInfo[1].toLowerCase()
-  let url = "https://www.apartments.com/" + cityFormatted + "-" + stateFromatted
+  const cityFormatted = cityStateInfo[0].replace('/\x20/g','-').toLowerCase()
+  const stateFromatted = cityStateInfo[1].toLowerCase()
+  const url = "https://www.apartments.com/" + cityFormatted + "-" + stateFromatted
   return url;
 } 
 
