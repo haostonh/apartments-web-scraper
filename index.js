@@ -10,6 +10,7 @@ const webScraper = express()
 var url
 var city
 var state
+const apartments = []
 
 function getCityState() {
   city = readlineSync.question('Enter City: ', {
@@ -37,7 +38,6 @@ function getApartmentInfo() {
     .then(response => {
       const html = response.data
       const $ = cheerio.load(html)
-      const apartments = []
 
       $('.placard', html).each(function() {
         // needs a dash looking at page inspect
