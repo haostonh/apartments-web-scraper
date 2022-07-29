@@ -42,8 +42,8 @@ function getApartmentInfo(url) {
       const $ = cheerio.load(html);
 
       $('.placard', html).each(function() {
-        // needs a dash looking at page inspect
-        // there were property-title classes in other sections, causing blank strings
+        // Needs a dash looking at page inspect
+        // There were property-title classes in other sections, causing blank strings
         const aptName = $('.property-title', this).text();
         const aptAddress = $('.property-address', this).text();
         const aptPhoneNumber = $('.phone-link', this).find('span').text();
