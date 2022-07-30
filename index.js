@@ -81,14 +81,31 @@ function putInfoIntoCSV(apartments) {
     const csv = parse(apartments,options);
     console.log(csv);
     var aptFile = fs.openSync('./apartments.csv', 'w');
-    fs.writeFileSync(aptFile, csv);
+    fs.appendFileSync(aptFile, csv);
     fs.closeSync(aptFile);
   } catch (err) {
     console.log(err);
   }
 }
 
-const cityStateInfo = getCityState();
+/*const cityStateInfo = getCityState();
 const url = getURL(cityStateInfo);
-const apartments = getApartmentInfo(url);
+const apartments = getApartmentInfo(url);*/
+
+const apartments = [{
+  aptName: 'Greystone Apartments & Town Homes',
+  aptAddress: '2505 5th St, Davis, CA 95618',
+  aptPhoneNumber: '(530) 379-2031',
+  aptPricing: '$2,900 - 4,215',
+  aptBeds: '2-4 Beds',
+  aptLink: 'https://www.apartments.com/greystone-apartments-town-homes-davis-ca/4804wzk/'
+},
+{
+  aptName: 'La Salle Apartments',
+  aptAddress: '880 Alvarado Ave, Davis, CA 95616',
+  aptPhoneNumber: '(530) 298-9915',
+  aptPricing: '$1,765 - 3,095',
+  aptBeds: '1-3 Beds',
+  aptLink: 'https://www.apartments.com/la-salle-apartments-davis-ca/32n69ed/'
+}]
 putInfoIntoCSV(apartments);
