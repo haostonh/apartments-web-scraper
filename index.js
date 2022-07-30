@@ -66,14 +66,15 @@ function getApartmentInfo(url) {
       });
 
       console.log(apartments);
-    }).catch(err => 
+      putInfoIntoCSV(apartments);
+    })
+    .catch(err => 
       console.log('Error Status:', err.response.status)
       );
-
-  return apartments;
 }
 
 function putInfoIntoCSV(apartments) {
+  console.log(apartments)
   const fields = ['aptName', 'aptAddress', 'aptPhoneNumber', 'aptPricing', 'aptBeds', 'aptLink'];
   const options = { fields };
   
@@ -88,11 +89,11 @@ function putInfoIntoCSV(apartments) {
   }
 }
 
-/*const cityStateInfo = getCityState();
+const cityStateInfo = getCityState();
 const url = getURL(cityStateInfo);
-const apartments = getApartmentInfo(url);*/
+getApartmentInfo(url);
 
-const apartments = [{
+/*const apartments = [{
   aptName: 'Greystone Apartments & Town Homes',
   aptAddress: '2505 5th St, Davis, CA 95618',
   aptPhoneNumber: '(530) 379-2031',
@@ -107,5 +108,8 @@ const apartments = [{
   aptPricing: '$1,765 - 3,095',
   aptBeds: '1-3 Beds',
   aptLink: 'https://www.apartments.com/la-salle-apartments-davis-ca/32n69ed/'
-}]
-putInfoIntoCSV(apartments);
+}];
+console.log(Object.keys(apartments[0]));
+apartments.forEach((obj => console.log(Object.values(obj))));*/
+
+//putInfoIntoCSV(apartments);
