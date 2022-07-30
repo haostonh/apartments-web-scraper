@@ -3,7 +3,8 @@ const PORT = '8080';
 const axios = require('axios');
 const cheerio = require('cheerio');
 const express = require('express');
-const {Parser} = require('json2csv');
+const fs = require('fs');
+const json2csv = require('json2csv').parse;
 const readlineSync = require('readline-sync');
 
 const webScraper = express();
@@ -73,10 +74,10 @@ function getApartmentInfo(url) {
 function putInfoIntoCSV(apartments) {
   const fields = ['aptName', 'aptAddress', 'aptPhoneNumber', 'aptPricing', 'aptBeds', 'aptLink'];
   const options = { fields };
-
+  
   try {
-    const parser = new Parser(options);
-    const csv = parser.parse(apartments);
+    const csv = json2csv(apartments, {fields: fields});
+    fs.writeFileSync('./apartments.csv', csv);
   } catch (err) {
     console.log(err);
   }
