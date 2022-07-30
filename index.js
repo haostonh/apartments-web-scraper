@@ -92,24 +92,3 @@ function putInfoIntoCSV(apartments) {
 const cityStateInfo = getCityState();
 const url = getURL(cityStateInfo);
 getApartmentInfo(url);
-
-/*const apartments = [{
-  aptName: 'Greystone Apartments & Town Homes',
-  aptAddress: '2505 5th St, Davis, CA 95618',
-  aptPhoneNumber: '(530) 379-2031',
-  aptPricing: '$2,900 - 4,215',
-  aptBeds: '2-4 Beds',
-  aptLink: 'https://www.apartments.com/greystone-apartments-town-homes-davis-ca/4804wzk/'
-},
-{
-  aptName: 'La Salle Apartments',
-  aptAddress: '880 Alvarado Ave, Davis, CA 95616',
-  aptPhoneNumber: '(530) 298-9915',
-  aptPricing: '$1,765 - 3,095',
-  aptBeds: '1-3 Beds',
-  aptLink: 'https://www.apartments.com/la-salle-apartments-davis-ca/32n69ed/'
-}];
-console.log(Object.keys(apartments[0]));
-apartments.forEach((obj => console.log(Object.values(obj))));*/
-
-//putInfoIntoCSV(apartments);
