@@ -3,6 +3,7 @@ const PORT = '8080';
 const axios = require('axios');
 const cheerio = require('cheerio');
 const express = require('express');
+const {Parser} = require('json2csv');
 const readlineSync = require('readline-sync');
 
 const webScraper = express();
@@ -70,7 +71,15 @@ function getApartmentInfo(url) {
 }
 
 function putInfoIntoCSV(apartments) {
+  const fields = ['aptName', 'aptAddress', 'aptPhoneNumber', 'aptPricing', 'aptBeds', 'aptLink'];
+  const options = { fields };
 
+  try {
+    const parser = new Parser(options);
+    const csv = parser.parse(apartments);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 const cityStateInfo = getCityState();
