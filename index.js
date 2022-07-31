@@ -72,7 +72,6 @@ function getApartmentInfo(url) {
 }
 
 function putInfoIntoCSV(apartments) {
-  console.log(apartments)
   const fields = ['aptName', 'aptAddress', 'aptPhoneNumber', 'aptPricing', 'aptBeds', 'aptLink'];
   const options = { fields };
   
