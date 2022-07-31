@@ -3,10 +3,8 @@ const PORT = '8080';
 const axios = require('axios');
 const cheerio = require('cheerio');
 const express = require('express');
-
 const fs = require('fs');
 const {parse} = require('json2csv');
-
 const readlineSync = require('readline-sync');
 
 const webScraper = express();
