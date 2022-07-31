@@ -63,8 +63,8 @@ function getApartmentInfo(url) {
         });
       });
 
-      console.log(apartments);
       putInfoIntoCSV(apartments);
+      console.log("Apartments logged into CSV successfully")
     })
     .catch(err => 
       console.log('Error Status:', err.response.status)
