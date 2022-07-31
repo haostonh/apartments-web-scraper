@@ -79,8 +79,9 @@ function putInfoIntoCSV(apartments) {
   try {
     const csv = parse(apartments, options);
     console.log(csv);
-    var aptFile = fs.openSync('./apartments.csv', 'w');
-    fs.appendFileSync(aptFile, csv);
+    var aptFile = fs.openSync('./apartments.csv', 'a+');
+    fs.readFileSync('./apartments.csv');
+    fs.writeFileSync(aptFile, csv, {flag: 'a+'});
     fs.closeSync(aptFile);
   } catch (err) {
     console.log(err);
