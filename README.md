@@ -2,6 +2,12 @@
 
 *Scraping Apartment Info from Apartments.com*
 
+## How To Run
+1. `npm install nodemon` in the repository folder
+2. `npm install` to install packages listed in package.json
+3. `npm start` to start nodemon
+4. Follow the prompts
+
 ## Goal
 - Take user input in which city and state they are searching for apartments
 - Scrap name, address, phone number, pricing, beds, and website of apartments
