@@ -7,6 +7,7 @@
 2. `npm install` to install packages listed in package.json
 3. `npm start` to start nodemon
 4. Follow the prompts
+5. Press Ctrl + C when done with program
 
 ## Goal
 - Take user input in which city and state they are searching for apartments
