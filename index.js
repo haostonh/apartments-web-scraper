@@ -24,7 +24,7 @@ function getCityState() {
 }
 
 function getURL(cityStateInfo) {
-  const cityFormatted = cityStateInfo[0].replace('/\x20/g','-').toLowerCase();
+  const cityFormatted = cityStateInfo[0].replace('/\x20/g', '-').toLowerCase();
   const stateFromatted = cityStateInfo[1].toLowerCase();
   const url = 'https://www.apartments.com/' + cityFormatted + "-" + stateFromatted;
 
@@ -77,7 +77,7 @@ function putInfoIntoCSV(apartments) {
   const options = { fields };
   
   try {
-    const csv = parse(apartments,options);
+    const csv = parse(apartments, options);
     console.log(csv);
     var aptFile = fs.openSync('./apartments.csv', 'w');
     fs.appendFileSync(aptFile, csv);
