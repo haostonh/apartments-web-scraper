@@ -31,7 +31,7 @@ function getURL(cityStateInfo) {
   return url;
 } 
 
-function getNumPageResults(url) {
+function getNumberPageResults(url) {
   let numPageResults;
 
   // Send a GET request for number of result pages
@@ -53,13 +53,7 @@ function getNumPageResults(url) {
   return numPageResults;
 }
 
-
-function getApartmentInfo(url) {
-  // Open the port to listen for url
-  const server = webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
-
-  let numPageResults = getNumPageResults(url);
-
+function getApartmentPageResults(url) {
   // Sending a GET request for apartment info from one page of the website
   axios(url)
     .then(response => {
@@ -94,6 +88,15 @@ function getApartmentInfo(url) {
     .catch(err => 
       console.log('Error Status:', err.response.status)
       );
+}
+
+function getApartmentInfo(url) {
+  // Open the port to listen for url
+  const server = webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
+
+  let numberPageResults = getNumberPageResults(url);
+
+  getApartmentPageResults(url);
   
   // Close the port 
   server.close();
