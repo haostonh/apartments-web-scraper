@@ -49,7 +49,7 @@ function getNumPageResults(url) {
     .catch(err => 
       console.log('Error Status:', err.response.status)
       );
-      
+
   return numPageResults;
 }
 
@@ -60,7 +60,7 @@ function getApartmentInfo(url) {
 
   let numPageResults = getNumPageResults(url);
 
-  // Sending a GET request for the info on website
+  // Sending a GET request for apartment info from one page of the website
   axios(url)
     .then(response => {
       const apartments = [];
