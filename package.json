@@ -12,7 +12,7 @@
     "url": "git+https://github.com/haostonh/apartments-web-scraper.git"
   },
   "author": "Haoston Huynh",
-  "license": "ISC",
+  "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/haostonh/apartments-web-scraper/issues"
   },
