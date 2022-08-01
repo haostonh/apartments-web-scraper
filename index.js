@@ -33,8 +33,7 @@ function getURL(cityStateInfo) {
 
 function getApartmentInfo(url) {
   // Open the port to listen for url
-  webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
-
+  const server = webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
 
   // Sending a GET request for the info on website
   axios(url)
@@ -65,11 +64,14 @@ function getApartmentInfo(url) {
       });
 
       putInfoIntoCSV(apartments);
-      console.log("Apartments logged into CSV successfully")
+      console.log("Apartments logged into CSV successfully");
     })
     .catch(err => 
       console.log('Error Status:', err.response.status)
       );
+  
+  // Close the port 
+  server.close();
 }
 
 function putInfoIntoCSV(apartments) {
