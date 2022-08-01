@@ -15,12 +15,14 @@
 - Insert the apartments' info into a CSV file
 
 ## Resources Used
+ - [Semantic Versioning](https://semver.org/)
+ - [MDN Styling Guide](https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Code_guidelines/JavaScript)
  - [Web Scraping Tutorial](https://youtu.be/-3lqUHeZs_0)
  - [JQuery Documentation](https://api.jquery.com/)
- - [Resolving EADDRINUSE Error](https://stackoverflow.com/questions/4075287/node-express-eaddrinuse-address-already-in-use-kill-server)
  - [Readline-Sync](https://www.npmjs.com/package/readline-sync)
  - [Json2CSV](https://www.npmjs.com/package/json2csv)
- - [fs-documentation](https://nodejs.org/api/fs.html)
+ - [fs Documentation](https://nodejs.org/api/fs.html)
+ - [Resolving EADDRINUSE Error](https://stackoverflow.com/questions/4075287/node-express-eaddrinuse-address-already-in-use-kill-server)
 
 ## Additional Features
 - Allow user to grab results of apartments from multiple pages
