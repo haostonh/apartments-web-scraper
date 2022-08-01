@@ -35,6 +35,24 @@ function getApartmentInfo(url) {
   // Open the port to listen for url
   const server = webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
 
+  let numPageResults;
+  // Send a GET request for number of result pages
+  axios(url)
+    .then(response => {
+      const html = response.data;
+      const $ = cheerio.load(html);
+
+      const pageRangeText = $('.pageRange',html).text();
+      const regex = /Page\x20[0-9]+\x20of\x20/;
+
+      numPageResults = Number(pageRangeText.replace(regex,''))
+      console.log(numPageResults)
+    })
+    .catch(err => 
+      console.log('Error Status:', err.response.status)
+      );
+
+
   // Sending a GET request for the info on website
   axios(url)
     .then(response => {
