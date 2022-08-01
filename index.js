@@ -95,8 +95,20 @@ function getApartmentInfo(url) {
   const server = webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
 
   let numberPageResults = getNumberPageResults(url);
+  let currentPageNumber = 1;
+  let urlWithPageNumber;
 
-  getApartmentPageResults(url);
+  while(currentPageNumber <= numberPageResults) {
+    if(currentPageNumber == 1) {
+      getApartmentPageResults(url);
+      currentPageNumber++;
+      continue;
+    }
+
+    urlWithPageNumber = url + '/' + currentPageNumber + '/';
+    getApartmentPageResults(urlWithPageNumber);
+    currentPageNumber++;
+  }
   
   // Close the port 
   server.close();
