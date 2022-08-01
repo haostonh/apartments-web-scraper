@@ -35,11 +35,12 @@ function getApartmentInfo(url) {
   // Open the port to listen for url
   webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
 
-  const apartments = [];
 
   // Sending a GET request for the info on website
   axios(url)
     .then(response => {
+      const apartments = [];
+
       const html = response.data;
       const $ = cheerio.load(html);
 
