@@ -43,9 +43,10 @@ function getNumberPageResults(url) {
 
       const pageRangeText = $('.pageRange',html).text();
       const regex = /Page\x20[0-9]+\x20of\x20/;
-      numPageResults = Number(pageRangeText.replace(regex,''));
+      numPageResults = (pageRangeText.replace(regex,''));
 
-      console.log(numPageResults);
+      console.log(typeof numPageResults);
+      return numPageResults;
     })
     .catch(err => 
       console.log('Error Status:', err.response.status)
@@ -91,11 +92,105 @@ function getApartmentPageResults(url) {
       );
 }
 
-function getApartmentInfo(url) {
+async function getApartmentInfo(url) {
   // Open the port to listen for url
   const server = webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
 
-  let numberPageResults = getNumberPageResults(url);
+  let numPageResults;
+  // Send a GET request for number of result pages
+  await axios(url)
+    .then(response => {
+      const html = response.data;
+      const $ = cheerio.load(html);
+
+      const pageRangeText = $('.pageRange',html).text();
+      const regex = /Page\x20[0-9]+\x20of\x20/;
+      numPageResults = Number(pageRangeText.replace(regex,''));
+
+      console.log(typeof numPageResults);
+    })
+    .catch(err => 
+      console.log('Error Status:', err.response)
+      );
+
+  console.log(numPageResults)
+  
+  await axios(url)
+    .then(response => {
+      const apartments = [];
+
+      const html = response.data;
+      const $ = cheerio.load(html);
+
+      $('.placard', html).each(function() {
+        // Needs a dash looking at page inspect
+        // There were property-title classes in other sections, causing blank strings
+        const aptName = $('.property-title', this).text();
+        const aptAddress = $('.property-address', this).text();
+        const aptPhoneNumber = $('.phone-link', this).find('span').text();
+        const aptPricing = $('.property-pricing', this).text();
+        const aptBeds = $('.property-beds', this).text();
+        const aptLink = $('.property-information', this).find('a').attr('href');
+
+        apartments.push({
+          aptName,
+          aptAddress,
+          aptPhoneNumber,
+          aptPricing,
+          aptBeds,
+          aptLink
+        });
+      });
+
+      putInfoIntoCSV(apartments);
+      console.log("Apartments logged into CSV successfully");
+    })
+    .catch(err => 
+      console.log('Error Status:', err.response.status)
+      );
+
+
+  for (let i = 1; i < numPageResults; i++) {
+    await axios(url)
+    .then(response => {
+      const apartments = [];
+
+      const html = response.data;
+      const $ = cheerio.load(html);
+
+      $('.placard', html).each(function() {
+        // Needs a dash looking at page inspect
+        // There were property-title classes in other sections, causing blank strings
+        const aptName = $('.property-title', this).text();
+        const aptAddress = $('.property-address', this).text();
+        const aptPhoneNumber = $('.phone-link', this).find('span').text();
+        const aptPricing = $('.property-pricing', this).text();
+        const aptBeds = $('.property-beds', this).text();
+        const aptLink = $('.property-information', this).find('a').attr('href');
+
+        apartments.push({
+          aptName,
+          aptAddress,
+          aptPhoneNumber,
+          aptPricing,
+          aptBeds,
+          aptLink
+        });
+      });
+
+      putInfoIntoCSV(apartments);
+      console.log("Apartments logged into CSV successfully");
+    })
+    .catch(err => 
+      console.log('Error Status:', err.response.status)
+      );
+  }
+  // Close the port 
+  server.close();
+  
+}
+
+async function test1(url, numberPageResults) {
   let currentPageNumber = 1;
   let urlWithPageNumber;
 
@@ -113,9 +208,6 @@ function getApartmentInfo(url) {
     getApartmentPageResults(urlWithPageNumber);
     currentPageNumber++;
   }
-
-  // Close the port 
-  server.close();
 }
 
 function putInfoIntoCSV(apartments) {
