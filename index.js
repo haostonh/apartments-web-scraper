@@ -5,6 +5,7 @@ const cheerio = require('cheerio');
 const express = require('express');
 const fs = require('fs');
 const {parse} = require('json2csv');
+const promise = require('promise');
 const readlineSync = require('readline-sync');
 
 const webScraper = express();
@@ -98,6 +99,9 @@ function getApartmentInfo(url) {
   let currentPageNumber = 1;
   let urlWithPageNumber;
 
+  console.log("Num Page Results: ", numberPageResults)
+  console.log(currentPageNumber)
+
   while(currentPageNumber <= numberPageResults) {
     if(currentPageNumber == 1) {
       getApartmentPageResults(url);
@@ -109,7 +113,7 @@ function getApartmentInfo(url) {
     getApartmentPageResults(urlWithPageNumber);
     currentPageNumber++;
   }
-  
+
   // Close the port 
   server.close();
 }
