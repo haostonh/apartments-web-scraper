@@ -150,8 +150,10 @@ async function getApartmentInfo(url) {
       );
 
 
-  for (let i = 1; i < numPageResults; i++) {
-    await axios(url)
+  for (let i = 2; i <= numPageResults; i++) {
+    let urlWithPageNumber = url + '/' + i + '/';
+
+    await axios(urlWithPageNumber)
     .then(response => {
       const apartments = [];
 
