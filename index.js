@@ -97,7 +97,8 @@ async function getApartmentInfo(url) {
   let currentPageNumber = 1;
   let urlWithPageNumber;
   
-  while(currentPageNumber <= numberPageResults) {
+  // Placeholder num
+  while(currentPageNumber <= 1) {
     if(currentPageNumber == 1) {
       await getApartmentPageResults(url);
       currentPageNumber++;
@@ -119,7 +120,9 @@ function putInfoIntoCSV(apartments) {
   const options = { fields };
   
   try {
-    const csv = parse(apartments, options);
+    let csv = parse(apartments, options);
+    csv = csv.replace("\"aptName\",\"aptAddress\",\"aptPhoneNumber\",\"aptPricing\",\"aptBeds\",\"aptLink\"",'');
+    console.log(csv);
     var aptFile = fs.openSync('./apartments.csv', 'a+');
     fs.readFileSync('./apartments.csv');
     fs.writeFileSync(aptFile, csv, {flag: 'a+'});
