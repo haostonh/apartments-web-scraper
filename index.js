@@ -94,9 +94,12 @@ function putInfoIntoCSV(apartments) {
   
   try {
     let csv = parse(apartments, options);
+
+    // Add header to csv if it is a new file
     if(fs.existsSync('./apartments.csv')) {
       csv = csv.replace("\"aptName\",\"aptAddress\",\"aptPhoneNumber\",\"aptPricing\",\"aptBeds\",\"aptLink\"",'');
     }
+
     var aptFile = fs.openSync('./apartments.csv', 'a+');
     fs.readFileSync('./apartments.csv');
     fs.writeFileSync(aptFile, csv, {flag: 'a+'});
@@ -124,7 +127,7 @@ async function getApartmentInfo(url, cityStateInfo) {
   }
 
   console.log("This may take a few minutes");
-  
+
   while(currentPageNumber <= numberPageResults) {
     if(currentPageNumber == 1) {
       await getApartmentPageResults(url);
