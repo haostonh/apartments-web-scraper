@@ -97,23 +97,6 @@ async function getApartmentInfo(url) {
   const server = webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
 
   let numPageResults = await getNumberPageResults(url);
-  // Send a GET request for number of result pages
-  /*await axios(url)
-    .then(response => {
-      const html = response.data;
-      const $ = cheerio.load(html);
-
-      const pageRangeText = $('.pageRange',html).text();
-      const regex = /Page\x20[0-9]+\x20of\x20/;
-      numPageResults = Number(pageRangeText.replace(regex,''));
-
-      console.log(typeof numPageResults);
-    })
-    .catch(err => 
-      console.log('Error Status:', err.response)
-      );
-
-  console.log(numPageResults)*/
   
   await axios(url)
     .then(response => {
