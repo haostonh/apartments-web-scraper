@@ -103,7 +103,8 @@ function putInfoIntoCSV(apartments) {
     fs.readFileSync('./apartments.csv');
     fs.writeFileSync(aptFile, csv, {flag: 'a+'});
     fs.closeSync(aptFile);
-  } catch (err) {
+  } 
+  catch(err) {
     console.log(err);
   }
 }
