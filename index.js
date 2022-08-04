@@ -44,9 +44,6 @@ async function getNumberPageResults(url) {
       const pageRangeText = $('.pageRange',html).text();
       const regex = /Page\x20[0-9]+\x20of\x20/;
       numPageResults = (pageRangeText.replace(regex,''));
-
-      console.log(typeof numPageResults);
-      return numPageResults;
     })
     .catch(err => 
       console.log('Error Status:', err.response.status)
