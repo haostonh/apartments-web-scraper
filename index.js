@@ -126,7 +126,7 @@ async function getApartmentInfo(url, cityStateInfo) {
     currentPageNumber++;
   }
 
-  console.log("Apartments near/in " + cityStateInfo[0] + "," + cityStateInfo[1] +"logged into CSV successfully");
+  console.log("Apartments near/in " + cityStateInfo[0] + ", " + cityStateInfo[1] + " logged into CSV successfully");
   // Close the port 
   server.close();
   
