@@ -42,7 +42,7 @@ async function getNumberPageResults(url) {
 
       const pageRangeText = $('.pageRange',html).text();
       const regex = /Page\x20[0-9]+\x20of\x20/;
-      numberPageResults = (pageRangeText.replace(regex,''));
+      numberPageResults = pageRangeText.replace(regex,'');
     })
     .catch(err => 
       console.log('Error Status:', err.response.status)
@@ -113,7 +113,7 @@ async function getApartmentInfo(url, cityStateInfo) {
   // Open the port to listen for url
   const server = webScraper.listen(PORT, () => console.log(`\nListening on PORT ${PORT} \n`));
 
-  let numberPageResults = await getNumberPageResults(url);
+  const numberPageResults = await getNumberPageResults(url);
   let currentPageNumber = 1;
   let urlWithPageNumber;
   
