@@ -110,7 +110,7 @@ function putInfoIntoCSV(apartments) {
 
 async function getApartmentInfo(url, cityStateInfo) {
   // Open the port to listen for url
-  const server = webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT} \n`));
+  const server = webScraper.listen(PORT, () => console.log(`\nListening on PORT ${PORT} \n`));
 
   let numberPageResults = await getNumberPageResults(url);
   let currentPageNumber = 1;
