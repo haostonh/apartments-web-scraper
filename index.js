@@ -140,9 +140,9 @@ async function getApartmentInfo(url, cityStateInfo) {
   }
 
   console.log("Apartments near/in " + cityStateInfo[0] + ", " + cityStateInfo[1] + " logged into CSV successfully");
+
   // Close the port 
   server.close();
-  
 }
 
 const cityStateInfo = getCityState();
