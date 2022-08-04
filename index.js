@@ -5,7 +5,6 @@ const cheerio = require('cheerio');
 const express = require('express');
 const fs = require('fs');
 const {parse} = require('json2csv');
-const promise = require('promise');
 const readlineSync = require('readline-sync');
 
 const webScraper = express();
