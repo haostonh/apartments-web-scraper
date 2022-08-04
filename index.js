@@ -106,7 +106,7 @@ function putInfoIntoCSV(apartments) {
   }
 }
 
-async function getApartmentInfo(url) {
+async function getApartmentInfo(url, cityStateInfo) {
   // Open the port to listen for url
   const server = webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
 
@@ -126,6 +126,7 @@ async function getApartmentInfo(url) {
     currentPageNumber++;
   }
 
+  console.log("Apartments logged into CSV successfully");
   // Close the port 
   server.close();
   
@@ -133,4 +134,4 @@ async function getApartmentInfo(url) {
 
 const cityStateInfo = getCityState();
 const url = getURL(cityStateInfo);
-getApartmentInfo(url);
+getApartmentInfo(url, cityStateInfo);
