@@ -114,6 +114,17 @@ async function getApartmentInfo(url, cityStateInfo) {
   let currentPageNumber = 1;
   let urlWithPageNumber;
   
+  let pagesFirstorAll = readlineSync.question('Do you want all pages of results?\n\'Y\' for all pages / \'N\' for first page: ', {
+    limit: /[nNyY]/, 
+    limitMessage: 'Enter \'Y\' or \'N\''
+  });
+
+  if(pagesFirstorAll == 'n' || pagesFirstorAll == 'N') {
+    numberPageResults = 1;
+  }
+
+  console.log("This may take a few minutes");
+  
   while(currentPageNumber <= numberPageResults) {
     if(currentPageNumber == 1) {
       await getApartmentPageResults(url);
