@@ -97,8 +97,7 @@ async function getApartmentInfo(url) {
   let currentPageNumber = 1;
   let urlWithPageNumber;
   
-  // Placeholder num
-  while(currentPageNumber <= 1) {
+  while(currentPageNumber <= numberPageResults) {
     if(currentPageNumber == 1) {
       await getApartmentPageResults(url);
       currentPageNumber++;
