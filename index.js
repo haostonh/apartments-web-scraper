@@ -89,6 +89,26 @@ async function getApartmentPageResults(url) {
       );
 }
 
+function putInfoIntoCSV(apartments) {
+  const fields = ['aptName', 'aptAddress', 'aptPhoneNumber', 'aptPricing', 'aptBeds', 'aptLink'];
+  const options = { fields };
+  
+  try {
+    let csv = parse(apartments, options);
+    console.log(csv);
+    if(fs.existsSync('./apartments.csv')) {
+      csv = csv.replace("\"aptName\",\"aptAddress\",\"aptPhoneNumber\",\"aptPricing\",\"aptBeds\",\"aptLink\"",'');
+      console.log(csv);
+    }
+    var aptFile = fs.openSync('./apartments.csv', 'a+');
+    fs.readFileSync('./apartments.csv');
+    fs.writeFileSync(aptFile, csv, {flag: 'a+'});
+    fs.closeSync(aptFile);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 async function getApartmentInfo(url) {
   // Open the port to listen for url
   const server = webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
@@ -112,26 +132,6 @@ async function getApartmentInfo(url) {
   // Close the port 
   server.close();
   
-}
-
-function putInfoIntoCSV(apartments) {
-  const fields = ['aptName', 'aptAddress', 'aptPhoneNumber', 'aptPricing', 'aptBeds', 'aptLink'];
-  const options = { fields };
-  
-  try {
-    let csv = parse(apartments, options);
-    console.log(csv);
-    if(fs.existsSync('./apartments.csv')) {
-      csv = csv.replace("\"aptName\",\"aptAddress\",\"aptPhoneNumber\",\"aptPricing\",\"aptBeds\",\"aptLink\"",'');
-      console.log(csv);
-    }
-    var aptFile = fs.openSync('./apartments.csv', 'a+');
-    fs.readFileSync('./apartments.csv');
-    fs.writeFileSync(aptFile, csv, {flag: 'a+'});
-    fs.closeSync(aptFile);
-  } catch (err) {
-    console.log(err);
-  }
 }
 
 const cityStateInfo = getCityState();
