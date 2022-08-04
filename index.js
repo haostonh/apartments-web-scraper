@@ -55,9 +55,9 @@ async function getNumberPageResults(url) {
   return numPageResults;
 }
 
-function getApartmentPageResults(url) {
+async function getApartmentPageResults(url) {
   // Sending a GET request for apartment info from one page of the website
-  axios(url)
+  await axios(url)
     .then(response => {
       const apartments = [];
 
@@ -96,80 +96,22 @@ async function getApartmentInfo(url) {
   // Open the port to listen for url
   const server = webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
 
-  let numPageResults = await getNumberPageResults(url);
+  let numberPageResults = await getNumberPageResults(url);
+  let currentPageNumber = 1;
+  let urlWithPageNumber;
   
-  await axios(url)
-    .then(response => {
-      const apartments = [];
+  while(currentPageNumber <= numberPageResults) {
+    if(currentPageNumber == 1) {
+      await getApartmentPageResults(url);
+      currentPageNumber++;
+      continue;
+    }
 
-      const html = response.data;
-      const $ = cheerio.load(html);
-
-      $('.placard', html).each(function() {
-        // Needs a dash looking at page inspect
-        // There were property-title classes in other sections, causing blank strings
-        const aptName = $('.property-title', this).text();
-        const aptAddress = $('.property-address', this).text();
-        const aptPhoneNumber = $('.phone-link', this).find('span').text();
-        const aptPricing = $('.property-pricing', this).text();
-        const aptBeds = $('.property-beds', this).text();
-        const aptLink = $('.property-information', this).find('a').attr('href');
-
-        apartments.push({
-          aptName,
-          aptAddress,
-          aptPhoneNumber,
-          aptPricing,
-          aptBeds,
-          aptLink
-        });
-      });
-
-      putInfoIntoCSV(apartments);
-      console.log("Apartments logged into CSV successfully");
-    })
-    .catch(err => 
-      console.log('Error Status:', err.response.status)
-      );
-
-
-  for (let i = 2; i <= numPageResults; i++) {
-    let urlWithPageNumber = url + '/' + i + '/';
-
-    await axios(urlWithPageNumber)
-    .then(response => {
-      const apartments = [];
-
-      const html = response.data;
-      const $ = cheerio.load(html);
-
-      $('.placard', html).each(function() {
-        // Needs a dash looking at page inspect
-        // There were property-title classes in other sections, causing blank strings
-        const aptName = $('.property-title', this).text();
-        const aptAddress = $('.property-address', this).text();
-        const aptPhoneNumber = $('.phone-link', this).find('span').text();
-        const aptPricing = $('.property-pricing', this).text();
-        const aptBeds = $('.property-beds', this).text();
-        const aptLink = $('.property-information', this).find('a').attr('href');
-
-        apartments.push({
-          aptName,
-          aptAddress,
-          aptPhoneNumber,
-          aptPricing,
-          aptBeds,
-          aptLink
-        });
-      });
-
-      putInfoIntoCSV(apartments);
-      console.log("Apartments logged into CSV successfully");
-    })
-    .catch(err => 
-      console.log('Error Status:', err.response.status)
-      );
+    urlWithPageNumber = url + '/' + currentPageNumber + '/';
+    await getApartmentPageResults(urlWithPageNumber);
+    currentPageNumber++;
   }
+
   // Close the port 
   server.close();
   
