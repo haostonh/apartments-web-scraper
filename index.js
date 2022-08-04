@@ -33,7 +33,7 @@ function getURL(cityStateInfo) {
 } 
 
 async function getNumberPageResults(url) {
-  let numPageResults;
+  let numberPageResults;
 
   // Send a GET request for number of result pages
   await axios(url)
@@ -43,13 +43,13 @@ async function getNumberPageResults(url) {
 
       const pageRangeText = $('.pageRange',html).text();
       const regex = /Page\x20[0-9]+\x20of\x20/;
-      numPageResults = (pageRangeText.replace(regex,''));
+      numberPageResults = (pageRangeText.replace(regex,''));
     })
     .catch(err => 
       console.log('Error Status:', err.response.status)
       );
 
-  return numPageResults;
+  return numberPageResults;
 }
 
 async function getApartmentPageResults(url) {
