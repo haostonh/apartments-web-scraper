@@ -32,11 +32,11 @@ function getURL(cityStateInfo) {
   return url;
 } 
 
-function getNumberPageResults(url) {
+async function getNumberPageResults(url) {
   let numPageResults;
 
   // Send a GET request for number of result pages
-  axios(url)
+  await axios(url)
     .then(response => {
       const html = response.data;
       const $ = cheerio.load(html);
@@ -96,9 +96,9 @@ async function getApartmentInfo(url) {
   // Open the port to listen for url
   const server = webScraper.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
 
-  let numPageResults;
+  let numPageResults = await getNumberPageResults(url);
   // Send a GET request for number of result pages
-  await axios(url)
+  /*await axios(url)
     .then(response => {
       const html = response.data;
       const $ = cheerio.load(html);
@@ -113,7 +113,7 @@ async function getApartmentInfo(url) {
       console.log('Error Status:', err.response)
       );
 
-  console.log(numPageResults)
+  console.log(numPageResults)*/
   
   await axios(url)
     .then(response => {
