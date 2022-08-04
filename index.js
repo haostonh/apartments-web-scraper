@@ -117,26 +117,6 @@ async function getApartmentInfo(url) {
   
 }
 
-async function test1(url, numberPageResults) {
-  let currentPageNumber = 1;
-  let urlWithPageNumber;
-
-  console.log("Num Page Results: ", numberPageResults)
-  console.log(currentPageNumber)
-
-  while(currentPageNumber <= numberPageResults) {
-    if(currentPageNumber == 1) {
-      getApartmentPageResults(url);
-      currentPageNumber++;
-      continue;
-    }
-
-    urlWithPageNumber = url + '/' + currentPageNumber + '/';
-    getApartmentPageResults(urlWithPageNumber);
-    currentPageNumber++;
-  }
-}
-
 function putInfoIntoCSV(apartments) {
   const fields = ['aptName', 'aptAddress', 'aptPhoneNumber', 'aptPricing', 'aptBeds', 'aptLink'];
   const options = { fields };
