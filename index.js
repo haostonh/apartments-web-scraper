@@ -82,7 +82,6 @@ async function getApartmentPageResults(url) {
       });
 
       putInfoIntoCSV(apartments);
-      console.log("Apartments logged into CSV successfully");
     })
     .catch(err => 
       console.log('Error Status:', err.response.status)
