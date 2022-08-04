@@ -121,7 +121,7 @@ function putInfoIntoCSV(apartments) {
   
   try {
     let csv = parse(apartments, options);
-    if(fs.existsSync('./apartment.csv')) {
+    if(fs.existsSync('./apartments.csv')) {
       csv = csv.replace("\"aptName\",\"aptAddress\",\"aptPhoneNumber\",\"aptPricing\",\"aptBeds\",\"aptLink\"\n",'');
       console.log(csv);
     }
